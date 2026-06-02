@@ -1,1 +1,12 @@
+a=int(input("enter side a"))
+b= int(input("enter side b"))
+c=int(input("enter side c"))
 
+if (b+c>a and c+a>b and a+b>c):
+    peri= (a+b+c)
+    s= peri/2
+    area= (s*(s-a)*(s-b)*(s-c))*1/2
+    print("area and parameter are :" ,area, peri)
+else:
+    print("triangle not valid")
+  
