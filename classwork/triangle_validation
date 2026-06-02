@@ -1,1 +1,8 @@
+a=int(input("enter side a"))
+b= int(input("enter side b"))
+c=int(input("enter side c"))
 
+if (b+c>a and c+a>b and a+b>c):
+    print("triangle is valid")
+else:
+    print("triangle not valid")
