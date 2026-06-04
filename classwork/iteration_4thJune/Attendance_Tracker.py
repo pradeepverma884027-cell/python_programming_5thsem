@@ -17,4 +17,4 @@ for i in range(1,31):
     student_in_class += 1
 
 print("No. of Students Present:", present_count)
-print(" No. of Students Absent:", absent_count)
+print("No. of Students Absent:", absent_count)
