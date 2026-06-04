@@ -5,7 +5,9 @@ secret_number = random.randint(1, 50)
 attempts = 0
 
 while True:
+    #entering number from user
     guess = int(input("Enter your guess: "))
+    #counting number of attempts
     attempts += 1
     
     if guess > secret_number:
@@ -14,5 +16,6 @@ while True:
         print("Too Low")
     else:
         print("Correct Guess")
+        #printing number of attempts
         print("Total Attempts:", attempts)
         break
