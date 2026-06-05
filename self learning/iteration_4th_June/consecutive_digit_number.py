@@ -1,5 +1,5 @@
 # Accept a number from the user
-num = input("Enter a number: ")
+num = int(input("Enter a number: "))
 
 # Assume the number is consecutive
 is_consecutive = True
@@ -12,7 +12,7 @@ for i in range(1, len(num)):
         is_consecutive = False
         break
 
-# Display result
+# Displaying result
 if is_consecutive:
     print("Consecutive Number")
 else:
