@@ -12,7 +12,7 @@ slowest_position = 1
 
 # Input remaining racers
 for i in range(2, n + 1):
-    time = float(input(f"Enter lap time of racer {i}: "))
+    time = float(input(f"Enter lap time of racer{i} : "))
 
     # Check for fastest racer
     if time < fastest_time:
