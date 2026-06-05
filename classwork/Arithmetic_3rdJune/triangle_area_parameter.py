@@ -1,3 +1,4 @@
+#takes three sides as input and calculate area and parameter
 a=int(input("enter the side a"))
 
 b=int(input("enter the side b"))
