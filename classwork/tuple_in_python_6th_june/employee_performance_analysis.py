@@ -65,3 +65,16 @@ print("High Performers : ")
 print(above_75)
 print("---------------------------------") 
 
+
+#Task 5: To display the performance category for each employee:
+print("Performance Categories : ")
+for record in employees:
+    if record[2]>=90:
+        print(record[1],"-> Excellent")
+    elif record[2]>=75 and record[2]<90:
+        print(record[1],"-> Good")
+    elif record[2]>=60 and record[2]<75:
+        print(record[1],"-> Average")
+    else:
+        print(record[1],"-> Needs Improvement")
+print("---------------------------------")
