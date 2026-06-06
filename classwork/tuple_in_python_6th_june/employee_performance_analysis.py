@@ -30,13 +30,13 @@ employees=(
 #--------------------------------------------------------
 
 #Task-1 : To display details of employees scoring 80 or above. 
+print("Dispalying details of employees scoring above 80")
 for records in employees:
     if (records[2]>= 80):
 
         print(records[0],records[1],records[2])
 
-    #Task-2 To Count the number of employees who need improvement (score below 60). 
-    
+#Task-2 To Count the number of employees who need improvement (score below 60).    
 count=0
 for record in employees:
     if record[2]<60:
@@ -44,8 +44,8 @@ for record in employees:
 print("Employees needing improvement : ",count)
 print("---------------------------------")
 
-    #Task-3 To Find the employee with the highest score.  
-    
+#Task-3 To Find the employee with the highest score.  
+
 max_score = 0
 for record in employees:
     if record[2]>max_score:
@@ -57,12 +57,12 @@ print(emp_id,emp_name,max_score)
 print("------------------------------------")
 
 #Task-4 To Create a list containing the names of all employees scoring above 75.
-above_75=[]
+score_above_75=[]
 for record in employees:
     if(record[2]>75):
-        above_75.append(record[1])
+        score_above_75.append(record[1])
 print("High Performers : ")
-print(above_75)
+print(score_above_75)
 print("---------------------------------") 
 
 
