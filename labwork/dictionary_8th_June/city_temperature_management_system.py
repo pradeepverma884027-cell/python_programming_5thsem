@@ -43,7 +43,7 @@ temperature = {
 #--------------------------------------------------
 # to display cities having temperature above 40°C
 
-print("Cities Above 40°C :")
+print("\nCities Above 40°C :")
 
 for city, temp in temperature.items():
     if temp > 40:
@@ -62,7 +62,7 @@ for item in dict_items:
         hottest_city = item[0]
         highest_temperature = item[1]
 
-print("Hottest City :", hottest_city, "(", highest_temperature, "°C )")
+print("\nHottest City :", hottest_city, "(", highest_temperature, "°C )")
 
 #--------------------------------------------------
 # to find the coolest city
@@ -110,7 +110,7 @@ for temp in temperature.values():
     if (temp >= 35) and (temp <= 40):
         count += 1
 
-print("Cities Between 35°C and 40°C :", count)
+print("\nCities Between 35°C and 40°C :", count)
 
 #--------------------------------------------------
 
