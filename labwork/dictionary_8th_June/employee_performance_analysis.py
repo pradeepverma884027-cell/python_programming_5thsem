@@ -46,7 +46,7 @@ performance = {
 #--------------------------------------------------
 # to display employees scoring above 80
 
-print("Employees Scoring Above 80 :")
+print("\nEmployees Scoring Above 80 :")
 
 for employee, score in performance.items():
     if score > 80:
@@ -61,7 +61,7 @@ for score in performance.values():
     if score < 60:
         improvement_count += 1
 
-print("Employees Needing Improvement :", improvement_count)
+print("\nEmployees Needing Improvement :", improvement_count)
 
 #--------------------------------------------------
 # to find the top performer
@@ -76,7 +76,7 @@ for item in dict_items:
         top_performer = item[0]
         highest_score = item[1]
 
-print("Top Performer :", top_performer, "(", highest_score, ")")
+print("\nTop Performer :", top_performer, "(", highest_score, ")")
 
 #--------------------------------------------------
 # to calculate average performance score
@@ -88,7 +88,7 @@ for score in performance.values():
 
 average_score = total_score / len(performance)
 
-print("Average Score :", (average_score))
+print("\nAverage Score :", (average_score))
 
 #--------------------------------------------------
 # to create separate lists based on performance
