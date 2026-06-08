@@ -43,7 +43,7 @@ sales = {
 #--------------------------------------------------
 # to display products sold more than 20 times
 
-print("Products Sold More Than 20 Times :")
+print("\nProducts Sold More Than 20 Times :")
 
 for product, quantity in sales.items():
     if quantity > 20:
