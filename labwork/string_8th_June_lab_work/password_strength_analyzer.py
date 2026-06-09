@@ -25,7 +25,8 @@ Rules:
 
 # storing password
 password = "Python@2026!"
-
+if password.isspace():
+    exit("password cannot be blank")
 #--------------------------------------------------
 # initialize counters and lists
 
