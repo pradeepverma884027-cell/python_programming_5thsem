@@ -1,98 +1,82 @@
-'''----------------------------------------------------
-Problem Statement: Email Address Verification System
-
-Email:
-rahul.sharma2026@gmail.com
-
-Tasks
-1. Extract username.
-2. Extract domain name.
-3. Extract extension.
-4. Count digits present in username.
-5. Count special characters.
-6. Check whether:
-   • Exactly one '@' exists.
-   • At least one '.' exists after '@'.
-7. Display Valid Email or Invalid Email.
+''' Problem Statement: Email Address Verification System 
+Email: rahul.sharma2026@gmail.com 
+Tasks 1. Extract username. 
+2. Extract domain name. 
+3. Extract extension. 
+4. Count digits present in username. 
+5. Count special characters. 
+6. Check whether: • Exactly one '@' exists. • At least one '.' exists after '@'. 
+7. Display Valid Email or Invalid Email. 
 ----------------------------------------------------'''
-
 # storing email address
 email = "rahul.sharma2026@gmail.com"
 
 #--------------------------------------------------
 # Task-1 : Extract username
 
-username = email[:email.index("@")]
+parts = email.split("@")
+
+username = parts[0]
+
+#--------------------------------------------------
+# Task-2 and Task-3 :
+# Extract domain and extension
+
+domain_parts = parts[1].split(".")
+
+domain = domain_parts[0]
+extension = domain_parts[1]
 
 print("Username :", username)
-
-#--------------------------------------------------
-# Task-2 : Extract domain name
-
-domain = email[email.index("@") + 1 : email.rindex(".")]
-
 print("Domain :", domain)
-
-#--------------------------------------------------
-# Task-3 : Extract extension
-
-extension = email[email.rindex(".") + 1:]
-
 print("Extension :", extension)
 
 #--------------------------------------------------
-# Task-4 : Count digits present in username
+# Task-4 and Task-5 :
+# Count digits and special characters in username
 
 digit_count = 0
+special_count = 0
 
-# traverse username
 for ch in username:
 
+    # count digits
     if ch.isdigit():
         digit_count += 1
 
-print("\nDigits Found :", digit_count)
-
-#--------------------------------------------------
-# Task-5 : Count special characters
-
-special_count = 0
-
-# traverse complete email
-for ch in email:
-
-    if not(ch.isalpha() or ch.isdigit()):
+    # count special characters
+    if not ch.isalnum():
         special_count += 1
 
+print("Digits Found :", digit_count)
 print("Special Characters Found :", special_count)
 
 #--------------------------------------------------
-# Task-6 : Verify email format
+# Task-6 : Validate email
 
-is_valid = (
-    email.count("@") == 1 and
-    "." in email[email.index("@"):]
+
+validity = (
+    email.count("@") == 1
+    and "." in email[email.index("@"):]
 )
-
 #--------------------------------------------------
 # Task-7 : Display email status
 
-if is_valid:
-    print("\nEmail Status : Valid")
+if validity:
+    print("Email Status : Valid")
+
 else:
-    print("\nEmail Status : Invalid")
+    print("Email Status : Invalid")
 
-#--------------------------------------------------
 
-'''
-Output:
-
-Username : rahul.sharma2026
-Domain : gmail
-Extension : com
-
-Digits Found : 4
-Special Characters Found : 2
-
-Email Status : Valid
-'''
+'''Sample Output 
+Email: rahul.sharma2026@gmail.com 
+ 
+Username: rahul.sharma2026 
+Domain: gmail 
+Extension: com 
+ 
+Digits Found: 4 
+Special Characters Found: 2 
+ 
+Email Status: Valid '''
