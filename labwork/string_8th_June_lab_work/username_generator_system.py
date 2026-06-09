@@ -1,97 +1,64 @@
-'''----------------------------------------------------
-Problem Statement: Username Generator System
+# ----------------------------------------------------
+# Problem: Username Generator
+# Rules:
+# 1. Remove spaces
+# 2. Convert to lowercase
+# 3. Append current year (2026)
+# 4. If length exceeds 12, keep first 12 characters
+# 5. Count vowels
+# 6. Count consonants
+# 7. Display username statistics
+# ----------------------------------------------------
 
-Student Name:
-Rahul Sharma
+# Take user's full name as input
+name = input("Enter the name: ")
 
-Tasks
-1. Remove spaces.
-2. Convert to lowercase.
-3. Append current year (2026).
-4. If username length exceeds 12, keep only first 12 characters.
-5. Count vowels in the generated username.
-6. Count consonants.
-7. Display username statistics.
-----------------------------------------------------'''
+# Store original name for display
+original_name = name
 
-# storing student name
-name = "Rahul Sharma"
-
-#--------------------------------------------------
-# Task-1 : Remove spaces
-
+# Task 1: Remove spaces from the name
 username = name.replace(" ", "")
 
-#--------------------------------------------------
-# Task-2 : Convert to lowercase
-
+# Task 2: Convert username to lowercase
 username = username.lower()
 
-#--------------------------------------------------
-# Task-3 : Append current year
-
+# Task 3: Append current year
 username = username + "2026"
 
-# display generated username
-print("Generated Username :", username)
+# Store complete username before truncation
+full_username = username
 
-#--------------------------------------------------
-# Task-4 : If username length exceeds 12,
-# keep only first 12 characters
-
+# Task 4: If username length exceeds 12, keep only first 12 characters
 if len(username) > 12:
-    short_username = username[:12]
-else:
-    short_username = username
+    username = username[:12]
 
-print("Username After Applying Length Rule :", short_username)
-
-#--------------------------------------------------
-# Task-5 and Task-6 :
-# Count vowels and consonants
-
+# Task 5 & 6: Count vowels and consonants
 vowel_count = 0
 consonant_count = 0
 
-# traverse generated username
 for ch in username:
 
-    # count only alphabets
+    # Check if character is a letter
     if ch.isalpha():
 
+        # Count vowels
         if ch in "aeiou":
             vowel_count += 1
 
+        # Count consonants
         else:
             consonant_count += 1
 
-#--------------------------------------------------
-# Task-7 : Display username statistics
+# Display Results
+print("\nOriginal Name:", original_name)
 
-print("\nOriginal Name :", name)
+print("\nGenerated Username:", full_username)
 
-print("Generated Username :", username)
+print("\nFinal Username (Max 12 Characters):", username)
 
-print("Username Length :", len(username))
+print("\nUsername Length:", len(username))
 
-print("\nVowels :", vowel_count)
-print("Consonants :", consonant_count)
+print("\nVowels:", vowel_count)
+print("Consonants:", consonant_count)
 
-print("\nStatus : Username Generated Successfully")
-
-#--------------------------------------------------
-
-'''
-Output:
-
-Original Name : Rahul Sharma
-
-Generated Username : rahulsharma2026
-
-Username Length : 15
-
-Vowels : 4
-Consonants : 7
-
-Status : Username Generated Successfully
-'''
+print("\nStatus: Username Generated Successfully")
