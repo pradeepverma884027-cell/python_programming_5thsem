@@ -104,6 +104,7 @@ print("Special Characters :", special_count)
 
 #--------------------------------------------------
 # Task-6 : Display all digits separately
+# first check digit or special character then allocate memory
 digits_found = []
 special_characters_found = []
 for ch in password:
