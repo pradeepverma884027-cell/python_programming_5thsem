@@ -178,10 +178,10 @@ def write_grade_report():
 
         grade = get_grade(student["marks"])
 
-        line = student["id"] + "," + \
-               student["name"] + "," + \
-               str(student["marks"]) + "," + \
-               grade + "\n"
+        line = student["id"],",",\
+               student["name"],",",\
+               str(student["marks"]),",",\
+               grade,"\n"
 
         file.write(line)
 
