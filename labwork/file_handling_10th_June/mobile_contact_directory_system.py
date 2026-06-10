@@ -44,7 +44,7 @@ def save_contacts(contacts):
 
     for contact in contacts:
 
-        line = contact["name"] + "," + contact["number"] + "\n"
+        line = contact["name"],",",contact["number"],"\n"
 
         file.write(line)
 
