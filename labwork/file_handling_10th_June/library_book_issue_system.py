@@ -2,120 +2,91 @@
 # LIBRARY BOOK ISSUE SYSTEM
 # ---------------------------------------------------------
 
-FILE_NAME = "books.txt"  # Name of the file where book data is stored
+FILE_NAME = "books.txt"
 
 
-# -------------------------------------------------------
 # Function to load books from file
-# Returns a list of book dictionaries
-# -------------------------------------------------------
 def load_books():
 
-    books = []  # Empty list to store all books
+    books = []
 
-    try:
-        file = open(FILE_NAME, "r")  # Open file in read mode
+    file = open(FILE_NAME, "r")
 
-        for line in file:
+    for line in file:
 
-            data = line.strip().split(",")  # Remove whitespace and split by comma
+        data = line.strip().split(",")
 
-            # Only process lines that have exactly 3 values (id, name, copies)
-            if len(data) == 3:
+        book = {
+            "id": data[0],
+            "name": data[1],
+            "copies": int(data[2])
+        }
 
-                book = {
-                    "id":     data[0],        # Book ID (e.g. B001)
-                    "name":   data[1],        # Book Name
-                    "copies": int(data[2])    # Number of copies (converted to int)
-                }
+        books.append(book)
 
-                books.append(book)  # Add book to list
+    file.close()
 
-        file.close()  # Always close the file after reading
-
-    except FileNotFoundError:
-        # If books.txt doesn't exist, inform user and return empty list
-        print("Warning: books.txt not found. Starting with empty book list.")
-
-    return books  # Return the list of books
+    return books
 
 
-# -------------------------------------------------------
-# Function to save updated book list back to file
-# Overwrites the file with latest data
-# -------------------------------------------------------
+# Function to save updated books into file
 def save_books(books):
 
-    file = open(FILE_NAME, "w")  # Open file in write mode (overwrites existing content)
+    file = open(FILE_NAME, "w")
 
     for book in books:
 
-        # Format each book as: id,name,copies
-        line = book["id"] + "," + book["name"] + "," + str(book["copies"]) + "\n"
+        line = book["id"],",",book["name"],",",str(book["copies"]),"\n"
 
-        file.write(line)  # Write line to file
+        file.write(line)
 
-    file.close()  # Close file after writing
+    file.close()
 
 
-# -------------------------------------------------------
-# Function to display all books in the library
-# -------------------------------------------------------
+# Function to display all books
 def display_books():
 
-    books = load_books()  # Load latest data from file
+    books = load_books()
 
     print("\nALL BOOKS")
     print("-" * 40)
 
-    if len(books) == 0:
-        print("No books found in the system.")
-        return
-
-    # Print header
-    print(f"{'ID':<10} {'NAME':<30} {'COPIES'}")
-    print("-" * 40)
-
     for book in books:
-        # Neatly formatted output
-        print(f"{book['id']:<10} {book['name']:<30} {book['copies']}")
+
+        print(book["id"], book["name"], book["copies"])
 
 
-# -------------------------------------------------------
 # Function to search a book using Book ID
-# -------------------------------------------------------
 def search_book():
 
-    books = load_books()  # Load books from file
+    books = load_books()
 
-    book_id = input("Enter Book ID to search: ").strip()  # .strip() removes accidental spaces
+    book_id = input("Enter Book ID: ")
 
-    found = False  # Flag to track if book was found
+    found = False
 
     for book in books:
 
-        if book["id"] == book_id:  # Match book ID
+        if book["id"] == book_id:
 
-            print("\nBook Found:")
-            print(f"  ID     : {book['id']}")
-            print(f"  Name   : {book['name']}")
-            print(f"  Copies : {book['copies']}")
+            print("\nBook Found")
+            print("ID:", book["id"])
+            print("Name:", book["name"])
+            print("Copies:", book["copies"])
 
             found = True
-            break  # Stop searching once found
+            break
 
     if not found:
-        print("Book not found. Please check the ID and try again.")
+        print("Book not found.")
 
 
-# -------------------------------------------------------
-# Function to issue a book (reduce copy count by 1)
-# -------------------------------------------------------
+# Function to issue a book
 def book_issuing():
 
-    books = load_books()  # Load books from file
+    books = load_books()
 
-    book_id = input("Enter Book ID to issue: ").strip()
+    book_id = input("Enter Book ID to issue: ")
 
     found = False
 
@@ -125,34 +96,31 @@ def book_issuing():
 
             found = True
 
-            if book["copies"] > 0:  # Check if copies are available
+            if book["copies"] > 0:
 
-                book["copies"] -= 1  # Reduce copy count by 1
+                book["copies"] -= 1
 
-                save_books(books)  # Save updated data to file
+                save_books(books)
 
-                print("\nBook Issued Successfully!")
-                print(f"  Book Name       : {book['name']}")
-                print(f"  Remaining Copies: {book['copies']}")
+                print("\nBook Issued Successfully")
+                print("Remaining Copies:", book["copies"])
 
             else:
-                # No copies available
-                print(f"Sorry! '{book['name']}' is currently unavailable.")
 
-            break  # Stop loop after finding the book
+                print("Book is unavailable.")
+
+            break
 
     if not found:
-        print("Book not found. Please check the ID and try again.")
+        print("Book not found.")
 
 
-# -------------------------------------------------------
-# Function to return a book (increase copy count by 1)
-# -------------------------------------------------------
+# Function to return a book
 def book_returned():
 
-    books = load_books()  # Load books from file
+    books = load_books()
 
-    book_id = input("Enter Book ID to return: ").strip()
+    book_id = input("Enter Book ID to return: ")
 
     found = False
 
@@ -162,89 +130,77 @@ def book_returned():
 
             found = True
 
-            book["copies"] += 1  # Increase copy count by 1
+            book["copies"] += 1
 
-            save_books(books)  # Save updated data to file
+            save_books(books)
 
-            print("\nBook Returned Successfully!")
-            print(f"  Book Name      : {book['name']}")
-            print(f"  Available Copies: {book['copies']}")
+            print("\nBook Returned Successfully")
+            print("Available Copies:", book["copies"])
 
-            break  # Stop loop after finding the book
+            break
 
     if not found:
-        print("Book not found. Please check the ID and try again.")
+        print("Book not found.")
 
 
-# -------------------------------------------------------
-# Function to display books with 0 copies (unavailable)
-# -------------------------------------------------------
+# Function to display unavailable books
 def unavailable_books():
 
-    books = load_books()  # Load books from file
+    books = load_books()
 
-    print("\nUNAVAILABLE BOOKS (Copies = 0)")
+    print("\nUNAVAILABLE BOOKS")
     print("-" * 40)
 
     found = False
 
     for book in books:
 
-        if book["copies"] == 0:  # Check for zero copies
+        if book["copies"] == 0:
 
-            print(f"  {book['id']}  |  {book['name']}")
+            print(book["id"], book["name"], book["copies"])
 
             found = True
 
     if not found:
-        print("All books are currently available.")  # No unavailable books
+        print("No unavailable books.")
 
 
-# -------------------------------------------------------
-# Function to display books that need restocking
-# (books with less than 2 copies)
-# -------------------------------------------------------
+# Function to display books requiring restocking
 def book_restocking():
 
-    books = load_books()  # Load books from file
+    books = load_books()
 
-    print("\nBOOKS REQUIRING RESTOCKING (Copies < 2)")
+    print("\nBOOKS REQUIRING RESTOCKING")
     print("-" * 40)
 
     found = False
 
     for book in books:
 
-        if book["copies"] < 2:  # Less than 2 copies = needs restocking
+        if book["copies"] < 2:
 
-            print(f"  {book['id']}  |  {book['name']}  |  Copies: {book['copies']}")
+            print(book["id"], book["name"], book["copies"])
 
             found = True
 
     if not found:
-        print("No books require restocking at this time.")
+        print("No books require restocking.")
 
 
-# -------------------------------------------------------
-# MAIN MENU - Runs in a loop until user chooses to exit
-# -------------------------------------------------------
+# ---------------- MAIN MENU ---------------- #
 
 while True:
 
-    # Display menu options
-    print("\n========================================")
-    print("       LIBRARY BOOK ISSUE SYSTEM        ")
-    print("========================================")
-    print("  1. Display All Books")
-    print("  2. Search Book by ID")
-    print("  3. Issue Book")
-    print("  4. Return Book")
-    print("  5. Display Unavailable Books")
-    print("  6. Display Books Requiring Restocking")
-    print("  7. Exit")
-    print("========================================")
+    print("\n===== LIBRARY BOOK ISSUE SYSTEM =====")
+    print("1. Display All Books")
+    print("2. Search Book by ID")
+    print("3. Issue Book")
+    print("4. Return Book")
+    print("5. Display Unavailable Books")
+    print("6. Display Books Requiring Restocking")
+    print("7. Exit")
 
-    choice = input("Enter Your Choice (1-7): ").strip()  # Get user input
+    choice = input("Enter Your Choice: ")
 
     if choice == "1":
         display_books()
@@ -265,8 +221,10 @@ while True:
         book_restocking()
 
     elif choice == "7":
-        print("\nThank you for using the Library System. Goodbye!")
-        break  # Exit the loop and end the program
+
+        print("Exiting Program...")
+        break
 
     else:
-        print("Invalid Choice! Please enter a number between 1 and 7.")
+
+        print("Invalid Choice. Try Again.")
