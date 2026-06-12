@@ -47,8 +47,7 @@ Medium Consumption:
 High Consumption: 
 ['House106', 'House108', 'House110'] 
  
-Eligible Households: 5 '''
-
+Eligible Households: 5'''
 # Smart Water Consumption Monitoring System
 
 water_usage = {
@@ -66,22 +65,36 @@ water_usage = {
 
 # 1. Display houses consuming more than 3000 litres
 print("Houses Consuming More Than 3000 Litres:")
-for house, usage in water_usage.items():
-    if usage > 3000:
+
+for house in water_usage:
+    if water_usage[house] > 3000:
         print(house)
 
 # 2. Find highest and lowest consumers
-highest_house = max(water_usage, key=water_usage.get)
-lowest_house = min(water_usage, key=water_usage.get)
+houses = list(water_usage.keys())
+
+highest = houses[0]
+lowest = houses[0]
+
+for house in water_usage:
+
+    if water_usage[house] > water_usage[highest]:
+        highest = house
+
+    if water_usage[house] < water_usage[lowest]:
+        lowest = house
 
 print("\nHighest Consumption:")
-print(f"{highest_house} ({water_usage[highest_house]} litres)")
+print(highest, "(", water_usage[highest], "litres )")
 
 print("\nLowest Consumption:")
-print(f"{lowest_house} ({water_usage[lowest_house]} litres)")
+print(lowest, "(", water_usage[lowest], "litres )")
 
 # 3. Calculate total water consumption
-total_consumption = sum(water_usage.values())
+total_consumption = 0
+
+for house in water_usage:
+    total_consumption += water_usage[house]
 
 print("\nTotal Consumption:", total_consumption, "litres")
 
@@ -90,12 +103,12 @@ low = []
 medium = []
 high = []
 
-for house, usage in water_usage.items():
+for house in water_usage:
 
-    if usage < 2000:
+    if water_usage[house] < 2000:
         low.append(house)
 
-    elif usage <= 3500:
+    elif water_usage[house] <= 3500:
         medium.append(house)
 
     else:
@@ -113,8 +126,9 @@ print(high)
 # 5. Count households eligible for conservation awareness programs
 eligible_count = 0
 
-for usage in water_usage.values():
-    if usage > 2500:
+for house in water_usage:
+
+    if water_usage[house] > 2500:
         eligible_count += 1
 
 print("\nEligible Households:", eligible_count)
