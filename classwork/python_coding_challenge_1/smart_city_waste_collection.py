@@ -1,3 +1,59 @@
+'''Smart City Waste Collection Management System 
+Problem Statement 
+The amount of waste collected (in kilograms) from different sectors of a city is stored below. 
+Sample Data 
+    "Sector2": 180, 
+    "Sector3": 510, 
+    "Sector4": 275, 
+    "Sector5": 150, 
+    "Sector6": 430, 
+    "Sector7": 220, 
+    "Sector8": 390, 
+    "Sector9": 145, 
+    "Sector10": 600 
+} 
+Tasks 
+1. Display sectors generating more than 400 kg of waste.  
+2. Find the sector generating maximum waste.  
+3. Find the sector generating minimum waste.  
+4. Calculate the total waste collected.  
+5. Categorize sectors:  
+o Low Waste (<200 kg)  
+o Medium Waste (200–400 kg)  
+o High Waste (>400 kg)  
+6. Count sectors requiring awareness campaigns (waste generation >300 kg).  
+7. Save the awareness campaign list to campaign_sectors.txt.  
+Sample Output 
+Sectors Generating More Than 400 kg Waste: 
+Sector3 
+Sector6 
+Sector10 
+ 
+Maximum Waste Generation: 
+Sector10 (600 kg) 
+ 
+Minimum Waste Generation: 
+Sector9 (145 kg) 
+ 
+Total Waste Collected: 3220 kg 
+ 
+Low Waste: 
+['Sector2', 'Sector5', 'Sector9'] 
+ 
+Medium Waste: 
+['Sector1', 'Sector4', 'Sector7', 'Sector8'] 
+ 
+High Waste: 
+['Sector3', 'Sector6', 'Sector10'] 
+ 
+Sectors Requiring Awareness Campaign: 
+Sector1 
+Sector3 
+Sector6 
+Sector8 
+Sector10 
+ 
+Campaign Report Generated Successfully.'''
 # Smart City Waste Collection Management System
 
 waste_data = {
