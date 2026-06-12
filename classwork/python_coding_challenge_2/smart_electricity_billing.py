@@ -1,107 +1,144 @@
-'''Online Shopping Inventory System 
+
+'''Problem 1: Smart Electricity Billing System 
 Problem Statement 
-An online store maintains stock quantities of products. 
+Monthly electricity consumption (units) of different houses in a residential society is stored as follows: 
 Sample Data 
-inventory = { 
-    "Laptop": 15, 
-    "Mouse": 45, 
-    "Keyboard": 32, 
-    "Monitor": 12, 
-    "Headphones": 28, 
-    "Printer": 8, 
-    "Webcam": 20, 
-    "Speaker": 18, 
-    "Tablet": 10, 
-    "Router": 25 
+units = { 
+    "House101": 320, 
+    "House102": 180, 
+    "House103": 510, 
+    "House104": 275, 
+    "House105": 150, 
+    "House106": 430, 
+    "House107": 220, 
+    "House108": 390, 
+    "House109": 145, 
+    "House110": 600 
 } 
 Tasks 
-1. Display products with stock below 15 units.  
-2. Find the product with maximum stock.  
-3. Find the product with minimum stock.  
-4. Calculate total stock available.  
-5. Create a list of products requiring restocking (<10 units).  
+1. Display houses consuming more than 400 units.  
+2. Find the highest-consuming house.  
+3. Find the lowest-consuming house.  
+4. Calculate the total units consumed.  
+5. Create separate lists for:  
+o Low Consumption (< 200)  
+o Medium Consumption (200–400)  
+o High Consumption (> 400)  
+6. Count houses eligible for an energy-saving campaign (consumption > 300).  
 Sample Output 
-Products with Stock Below 15: 
-Monitor 
-Printer 
-Tablet 
+Houses Consuming More Than 400 Units: 
+House103 
+House106 
+House110 
  
-Highest Stock Product: 
-Mouse (45 units) 
+Highest Consumption: 
+House110 (600 units) 
  
-Lowest Stock Product: 
-Printer (8 units) 
+Lowest Consumption: 
+House109 (145 units) 
  
-Total Stock Available: 213 
+Total Units Consumed: 3220 
  
-Products Requiring Restocking: 
-['Printer']'''
+Low Consumption: 
+['House102', 'House105', 'House109'] 
+ 
+Medium Consumption: 
+['House101', 'House104', 'House107', 'House108'] 
+ 
+High Consumption: 
+['House103', 'House106', 'House110'] 
+ 
+Eligible for Energy-Saving Campaign: 5'''
+
+#creating dictionary of units consumed
+units = { 
+    "House101": 320, 
+    "House102": 180, 
+    "House103": 510, 
+    "House104": 275, 
+    "House105": 150, 
+    "House106": 430, 
+    "House107": 220, 
+    "House108": 390, 
+    "House109": 145, 
+    "House110": 600 
+}
+
+#1. Display houses consuming more than 400 units.  
+print("Houses consuming more than  400 units: ")
+for house,unit in units.items():
+    if unit>400:
+        print(house)
+
+
+# house with highest units
+highest_house = list(units.keys())[0]
+highest_units = units[highest_house]
+
+for house, consumption in units.items():
+    if consumption > highest_units:
+        highest_units = consumption
+        highest_house = house
+
+print("\nHighest Consumption:")
+print(highest_house, highest_units, "units")
+
+
+#house with lowest unit
+lowest_house = list(units.keys())[0]
+lowest_unit = units[lowest_house]
+
+for house, unit in units.items():
+    if unit < lowest_unit:
+        lowest_unit = unit
+        lowest_house = house
+
+print("\nLowest Consumption:")
+print(lowest_house, lowest_unit, "units")
+
+
+#Calculate the total units consumed.
+total_bill=sum(units.values())
+
+print("Total Units Consumed: ",total_bill)
+
+
+'''Create separate lists for:  
+o Low Consumption (< 200)  
+o Medium Consumption (200–400)  
+o High Consumption (> 400)  '''
+
+
+low_consumption=[]
+medium_consumption=[]
+
+high_consumption=[]
+
+for house,unit in units.items():
+    if unit<200:
+        low_consumption.append(house)
+
+    if unit>200 and unit<400:
+        medium_consumption.append(house)
+
+    if unit>400:
+        high_consumption.append(house)
 
 
 
+print("Low Consumption:") 
+print(low_consumption)
+ 
+print("Medium Consumption: ")
+print(medium_consumption)
+ 
+print("High Consumption:") 
+print(high_consumption)
 
-#creating dictionary of stock data
+#6. Count houses eligible for an energy-saving campaign (consumption > 300).  
+count=0#for counting houses eligible for an energy-saving campaign (consumption > 300).  
+for house, unit in units.items():
+    if unit>300:
+        count+=1
 
-inventory = { 
-    "Laptop": 15, 
-    "Mouse": 45, 
-    "Keyboard": 32, 
-    "Monitor": 12, 
-    "Headphones": 28, 
-    "Printer": 8, 
-    "Webcam": 20, 
-    "Speaker": 18, 
-    "Tablet": 10, 
-    "Router": 25 
-} 
-
-#Display products with stock below 15 units. 
-("Products with Stock Below 15:") 
-
-for item,stock in inventory.items():
-    if stock<15:
-        print(item)
-
-
-#Find the product with maximum stock.  
-
-product_max = list(inventory.keys())[0]
-max_stock = inventory[product_max]
-
-for item, stock in inventory.items():
-    if stock > max_stock:
-        max_stock = stock
-        product_max = item
-
-print("Highest Stock Product:")
-print(product_max, max_stock, "units")
-
-#Find the product with minimum stock.  
-
-product_min = list(inventory.keys())[0]
-min_stock = inventory[product_min]
-
-for item, stock in inventory.items():
-    if stock < min_stock:
-        min_stock = stock
-        product_min = item
-
-print("Minimum Stock Product:")
-print(product_min, min_stock, "units")
-
-#Calculate total stock available. 
-
-total=sum(inventory.values())
-
-print("Total Stock Available:",total)
-
-#Create a list of products requiring restocking (<10 units).  
-
-restock=[]
-
-for item,stock in inventory.items():
-    if stock<10:
-        restock.append(item)
-print("Products Requiring Restocking: ")
-print(restock)
-
+print("Eligible for Energy-Saving Campaign: ",count)
