@@ -1,3 +1,46 @@
+'''University Course Enrollment Management System 
+Problem Statement 
+Student enrollment data for university courses is stored below. 
+Sample Data 
+enrollment = { 
+    "Python": 45, 
+    "Java": 38, 
+    "Data Science": 52, 
+    "Web Development": 34, 
+    "Machine Learning": 41, 
+    "Cloud Computing": 29, 
+    "Cyber Security": 33, 
+    "DBMS": 48, 
+    "Networking": 26, 
+} 
+"Operating Systems": 37 
+Tasks 
+1. Display courses having more than 40 enrollments.  
+2. Find the most and least popular courses.  
+3. Calculate total enrollments.  
+4. Create lists:  
+o High Demand (>40)  
+o Medium Demand (30–40)  
+o Low Demand (<30)  
+5. Count courses requiring promotional activities (<35 enrollments).  
+Sample Output 
+Courses with More Than 40 Enrollments: 
+Python 
+Data Science 
+Machine Learning 
+DBMS 
+Most Popular Course: 
+Data Science (52 students) 
+Least Popular Course: 
+Networking (26 students) 
+Total Enrollments: 383 
+High Demand: 
+['Python', 'Data Science', 'Machine Learning', 'DBMS'] 
+Medium Demand: 
+['Java', 'Web Development', 'Cyber Security', 'Operating Systems'] 
+Low Demand: 
+['Cloud Computing', 'Networking'] 
+Courses Requiring Promotion: 3'''
 # University Course Enrollment Management System
 
 enrollment = {
